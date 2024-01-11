@@ -1,0 +1,45 @@
+{
+  "name": "o3-shop/tinymce-editor",
+  "description": "TinyMCE 6 Integration for O3-Shop",
+  "type": "oxideshop-module",
+  "homepage": "https://www.o3-shop.com/",
+  "license": [
+    "GPL-3.0"
+  ],
+  "authors": [
+    {
+      "name": "Marat Bedoev, bestlife AG",
+      "email": "hello@mb-dev.pro"
+    },
+    {
+      "name": "O3-Shop",
+      "email": "info@o3-shop.com"
+    }
+  ],
+  "extra": {
+    "oxideshop": {
+      "blacklist-filter": [
+        "composer.json",
+        "CHANGELOG.md",
+        "README.md",
+        ".php-cs-fixer.php",
+        "phpstan.neon"
+      ],
+      "target-directory": "o3-shop/tinymce-editor"
+    }
+  },
+  "archive": {
+    "exclude": ["/build"]
+  },
+  "require": {
+    "php": ">=7.4",
+    "o3-shop/shop-ce": "^1.2 || dev-dev-b-1.x"
+  },
+  "autoload": {
+    "psr-4": {
+      "O3\\TinyMCE\\": "../../../source/modules/o3-shop/tinymce-editor"
+    }
+  }
+}
+
+

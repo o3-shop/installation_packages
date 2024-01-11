@@ -1,0 +1,58 @@
+{
+    "name": "o3-shop/paypal-module",
+    "description": "This is the PayPal module for the O3-Shop.",
+    "type": "oxideshop-module",
+    "keywords": ["o3-shop", "modules", "eShop"],
+    "homepage": "https://www.o3-shop.com/",
+    "license": [
+        "GPL-3.0-only"
+    ],
+    "author": [
+        {
+            "name": "OXID eSales AG",
+            "email": "info@oxid-esales.com",
+            "homepage": "https://oxid-esales.com",
+            "role": "Developer"
+        },
+        {
+            "name": "O3-Shop",
+            "email": "info@o3-shop.com",
+            "homepage": "https://www.o3-shop.com",
+            "role": "Developer"
+        }
+    ],
+    "extra": {
+        "oxideshop": {
+            "blacklist-filter": [
+                "documentation/**/*.*",
+                "CHANGELOG.md",
+                "composer.json",
+                "CONTRIBUTING.md",
+                "README.md"
+            ],
+            "target-directory": "oe/oepaypal"
+        }
+    },
+    "require": {
+        "php": "^7.1 || ^8.0",
+        "lib-curl": ">=7.26.0",
+        "lib-openssl": ">=1.0.1",
+        "ext-curl": "*",
+        "ext-openssl": "*",
+        "o3-shop/shop-ce": "^1.2"
+    },
+    "require-dev": {
+         "codeception/module-rest": "^1.4.2",
+         "codeception/module-phpbrowser": "^1.0.2",
+         "codeception/module-db": "^1.1.0",
+         "symfony/dotenv": "^5.1"
+     },
+    "autoload": {
+        "psr-4": {
+            "OxidEsales\\PayPalModule\\": "../../../source/modules/oe/oepaypal"
+        }
+    },
+    "replace": {
+        "oxid-esales/paypal-module": "6.4.1"
+    }
+}

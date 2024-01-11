@@ -1,0 +1,43 @@
+{
+  "name": "o3-shop/usercentrics",
+  "description": "O3-Shop Cookie Management powered by usercentrics",
+  "type": "oxideshop-module",
+  "license": ["GPL-3.0"],
+  "author": [
+    {
+      "name": "OXID eSales AG",
+      "email": "info@oxid-esales.com",
+      "homepage": "https://oxid-esales.com",
+      "role": "Developer"
+    },
+    {
+      "name": "O3-Shop",
+      "email": "info@o3-shop.com",
+      "homepage": "https://www.o3-shop.com",
+      "role": "Developer"
+    }
+  ],
+  "minimum-stability": "stable",
+  "extra": {
+    "oxideshop": {
+      "target-directory": "oxps/usercentrics"
+    }
+  },
+  "require": {
+    "symfony/yaml" : "> 3",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "ext-dom": "*",
+    "ext-libxml": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "OxidProfessionalServices\\Usercentrics\\": "src",
+      "OxidProfessionalServices\\Usercentrics\\Tests\\": "tests"
+    }
+  },
+  "replace": {
+    "oxid-professional-services/usercentrics": "1.2.1"
+  }
+}

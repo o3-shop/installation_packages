@@ -1,0 +1,168 @@
+<?php
+
+/**
+ * This file is part of O3-Shop Paypal module.
+ *
+ * O3-Shop is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 3.
+ *
+ * O3-Shop is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with O3-Shop.  If not, see <http://www.gnu.org/licenses/>
+ *
+ * @copyright  Copyright (c) 2022 OXID eSales AG (https://www.oxid-esales.com)
+ * @copyright  Copyright (c) 2022 O3-Shop (https://www.o3-shop.com)
+ * @license    https://www.gnu.org/licenses/gpl-3.0  GNU General Public License 3 (GPLv3)
+ */
+
+namespace OxidEsales\PayPalModule\Controller;
+
+use OxidEsales\PayPalModule\Model\PaymentManager;
+
+/**
+ * Abstract PayPal Dispatcher class
+ */
+abstract class Dispatcher extends \OxidEsales\PayPalModule\Controller\FrontendController
+{
+    /**
+     * Service type identifier - Standard Checkout = 1
+     *
+     * @var int
+     */
+    protected $serviceType = PaymentManager::PAYPAL_SERVICE_TYPE_STANDARD;
+
+    /**
+     * PayPal checkout service
+     *
+     * @var \OxidEsales\PayPalModule\Core\PayPalService
+     */
+    protected $payPalCheckoutService;
+
+    /**
+     * Default user action for checkout process
+     *
+     * @var string
+     */
+    protected $userAction = "continue";
+
+    /** @var PaymentManager */
+    protected $paymentManager = null;
+
+    /**
+     * Executes "GetExpressCheckoutDetails" and on SUCCESS response - saves
+     * user information and redirects to order page, on failure - sets error
+     * message and redirects to basket page
+     */
+    abstract public function getExpressCheckoutDetails();
+
+    /**
+     * Sets PayPal checkout service.
+     *
+     * @param \OxidEsales\PayPalModule\Core\PayPalService $payPalCheckoutService
+     */
+    public function setPayPalCheckoutService($payPalCheckoutService)
+    {
+        $this->payPalCheckoutService = $payPalCheckoutService;
+    }
+
+    /**
+     * Returns PayPal service
+     *
+     * @return \OxidEsales\PayPalModule\Core\PayPalService
+     */
+    public function getPayPalCheckoutService()
+    {
+        if ($this->payPalCheckoutService === null) {
+            $this->payPalCheckoutService = oxNew(\OxidEsales\PayPalModule\Core\PayPalService::class);
+        }
+
+        return $this->payPalCheckoutService;
+    }
+
+    protected function getPaymentManager(): PaymentManager
+    {
+        if (is_null($this->paymentManager)) {
+            $this->paymentManager = oxNew(PaymentManager::class, $this->getPayPalCheckoutService());
+        }
+
+        return $this->paymentManager;
+    }
+
+    /**
+     * @return  \OxidEsales\Eshop\Core\UtilsView
+     */
+    protected function getUtilsView()
+    {
+        return \OxidEsales\Eshop\Core\Registry::getUtilsView();
+    }
+
+    /**
+     * Formats given float/int value into PayPal friendly form
+     *
+     * @param float $in value to format
+     *
+     * @return string
+     */
+    protected function formatFloat($in)
+    {
+        return sprintf("%.2f", $in);
+    }
+
+    /**
+     * Returns oxUtils instance
+     *
+     * @return  \OxidEsales\Eshop\Core\Utils
+     */
+    protected function getUtils()
+    {
+        return \OxidEsales\Eshop\Core\Registry::getUtils();
+    }
+
+    /**
+     * Returns base url, which is used to construct Callback, Return and Cancel Urls
+     *
+     * @return string
+     */
+    protected function getBaseUrl()
+    {
+        $session = \OxidEsales\Eshop\Core\Registry::getSession();
+        $url = \OxidEsales\Eshop\Core\Registry::getConfig()->getSslShopUrl() . "index.php?lang=" . \OxidEsales\Eshop\Core\Registry::getLang()->getBaseLanguage() . "&sid=" . $session->getId() . "&rtoken=" . $session->getRemoteAccessToken();
+        $url .= "&shp=" . \OxidEsales\Eshop\Core\Registry::getConfig()->getShopId();
+
+        return $url;
+    }
+
+    /**
+     * Returns PayPal order object
+     *
+     * @return \OxidEsales\Eshop\Application\Model\Order|null
+     */
+    protected function getPayPalOrder()
+    {
+        $order = oxNew(\OxidEsales\Eshop\Application\Model\Order::class);
+        if ($order->loadPayPalOrder()) {
+            return $order;
+        }
+    }
+
+    /**
+     * Returns PayPal payment object
+     *
+     * @return \OxidEsales\Eshop\Application\Model\Payment|null
+     */
+    protected function getPayPalPayment()
+    {
+        $userPayment = null;
+
+        if (($order = $this->getPayPalOrder())) {
+            $userPayment = oxNew(\OxidEsales\Eshop\Application\Model\UserPayment::class);
+            $userPayment->load($order->oxorder__oxpaymentid->value);
+        }
+
+        return $userPayment;
+    }
+}
