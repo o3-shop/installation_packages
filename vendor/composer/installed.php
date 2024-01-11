@@ -155,12 +155,12 @@
             'dev_requirement' => false,
         ),
         'laminas/laminas-code' => array(
-            'pretty_version' => '4.7.1',
-            'version' => '4.7.1.0',
+            'pretty_version' => '4.13.0',
+            'version' => '4.13.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../laminas/laminas-code',
             'aliases' => array(),
-            'reference' => '91aabc066d5620428120800c0eafc0411e441a62',
+            'reference' => '7353d4099ad5388e84737dd16994316a04f48dbf',
             'dev_requirement' => false,
         ),
         'monolog/monolog' => array(

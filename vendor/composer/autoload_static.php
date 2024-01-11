@@ -4,13 +4,12 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit8823da87f87569a86709a187443f6e60
+class ComposerStaticInit49626ae7303bba7ae5c101d81de873e1
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        'c2aad8997a98dfc4771bdbffea3d62b7' => __DIR__ . '/..' . '/laminas/laminas-code/polyfill/ReflectionEnumPolyfill.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
@@ -403,10 +402,10 @@ class ComposerStaticInit8823da87f87569a86709a187443f6e60
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit8823da87f87569a86709a187443f6e60::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit8823da87f87569a86709a187443f6e60::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit8823da87f87569a86709a187443f6e60::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit8823da87f87569a86709a187443f6e60::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit49626ae7303bba7ae5c101d81de873e1::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit49626ae7303bba7ae5c101d81de873e1::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit49626ae7303bba7ae5c101d81de873e1::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit49626ae7303bba7ae5c101d81de873e1::$classMap;
 
         }, null, ClassLoader::class);
     }

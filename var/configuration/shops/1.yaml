@@ -1,4 +1,58 @@
 modules:
+  oxps_usercentrics:
+    id: oxps_usercentrics
+    path: oxps/usercentrics
+    version: 1.0.0
+    configured: false
+    title:
+      en: 'O3-Shop Cookie Management powered by usercentrics'
+    description:
+      de: "Die Usercentrics Consent Management Platform (CMP) ermöglicht Ihnen, Ihre Marketing- und Datenstrategie\n                 mit rechtlichen Anforderungen in Einklang zu bringen.</p>\n                 <h2>Registrieren Sie sich deshalb jetzt bei Usercentrics</h2>  \n                 <form target=\"_blank\" method=\"GET\" action=\"https://usercentrics.com/de/preise/?partnerid=o3partnerid#business-paket\">\n                     <input type=\"hidden\" name=\"partnerid\" value=\"o3partnerid\">\n                     <input style=\"background: #0A2; color: #fff; font-weight: bold;\" type=\"submit\" value=\"Jetzt registrieren\">\n                     <p>\n                         Sollte ein anderer Mitarbeiter in Ihrem Unternehmen die Registrierung durchführen, bitte dabei zwingend die O3-Shop Partner-ID o3partnerid angeben, um die Integration vollständig nutzen zu können. Zu diesem Zweck können Sie diesen Link weitergeben: https://usercentrics.com/de/preise/?partnerid=o3partnerid#business-paket\n                     </p>\n                 </form>\n                 "
+      en: "The Usercentrics Consent Management Platform (CMP) enables you to harmonize your marketing and data \n                 strategy with legal requirements.</p>\n                 <h2>Register now for Usercentrics</h2>  \n                 <form target=\"_blank\" method=\"GET\" action=\"https://usercentrics.com/pricing/?partnerid=o3partnerid#business-package\">               \n                     <input type=\"hidden\" name=\"partnerid\" value=\"o3partnerid\">\n                     <input style=\"background: #0A2; color: #fff; font-weight: bold;\" type=\"submit\" value=\"Register Now\">\n                     <p>\n                         If another employee in your company registers, please make sure to enter the O3-Shop partner ID o3partnerid in order to be able to fully use the integration. For that reason you can forward this link to them: https://usercentrics.com/pricing/?partnerid=o3partnerid#business-package\n                     </p>\n                 </form>\n                 "
+    lang: ''
+    thumbnail: ''
+    author: O3-Shop
+    url: ''
+    email: ''
+    classExtensions:
+      OxidEsales\Eshop\Core\ViewHelper\JavaScriptRenderer: OxidProfessionalServices\Usercentrics\Core\ScriptRenderer
+      OxidEsales\Eshop\Core\ViewConfig: OxidProfessionalServices\Usercentrics\Core\ViewConfig
+    moduleSettings:
+      usercentricsId:
+        group: usercentrics_main
+        type: str
+        value: ''
+      smartDataProtectorActive:
+        group: usercentrics_advanced
+        type: bool
+        value: true
+      smartDataProtectorDeactivateBlocking:
+        group: usercentrics_advanced
+        type: str
+        value: ''
+      usercentricsMode:
+        group: usercentrics_advanced
+        type: select
+        value: CmpV2
+        constraints:
+          - CmpV1
+          - CmpV2
+          - CmpV2Legacy
+          - CmpV2Tcf
+          - CmpV2TcfLegacy
+          - Custom
+      developmentAutomaticConsent:
+        type: bool
+        value: false
+    templateBlocks:
+      -
+        template: layout/base.tpl
+        block: base_js
+        file: src/views/blocks/base_js.tpl
+      -
+        template: layout/base.tpl
+        block: head_meta_description
+        file: src/views/blocks/head_meta_description.tpl
   oegdproptin:
     id: oegdproptin
     path: oe/gdproptin
@@ -90,60 +144,6 @@ modules:
         template: widget/reviews/reviews.tpl
         block: widget_reviews_form_fields
         file: Application/views/blocks/widget_reviews_form_fields.tpl
-  oxps_usercentrics:
-    id: oxps_usercentrics
-    path: oxps/usercentrics
-    version: 1.0.0
-    configured: false
-    title:
-      en: 'O3-Shop Cookie Management powered by usercentrics'
-    description:
-      de: "Die Usercentrics Consent Management Platform (CMP) ermöglicht Ihnen, Ihre Marketing- und Datenstrategie\n                 mit rechtlichen Anforderungen in Einklang zu bringen.</p>\n                 <h2>Registrieren Sie sich deshalb jetzt bei Usercentrics</h2>  \n                 <form target=\"_blank\" method=\"GET\" action=\"https://usercentrics.com/de/preise/?partnerid=o3partnerid#business-paket\">\n                     <input type=\"hidden\" name=\"partnerid\" value=\"o3partnerid\">\n                     <input style=\"background: #0A2; color: #fff; font-weight: bold;\" type=\"submit\" value=\"Jetzt registrieren\">\n                     <p>\n                         Sollte ein anderer Mitarbeiter in Ihrem Unternehmen die Registrierung durchführen, bitte dabei zwingend die O3-Shop Partner-ID o3partnerid angeben, um die Integration vollständig nutzen zu können. Zu diesem Zweck können Sie diesen Link weitergeben: https://usercentrics.com/de/preise/?partnerid=o3partnerid#business-paket\n                     </p>\n                 </form>\n                 "
-      en: "The Usercentrics Consent Management Platform (CMP) enables you to harmonize your marketing and data \n                 strategy with legal requirements.</p>\n                 <h2>Register now for Usercentrics</h2>  \n                 <form target=\"_blank\" method=\"GET\" action=\"https://usercentrics.com/pricing/?partnerid=o3partnerid#business-package\">               \n                     <input type=\"hidden\" name=\"partnerid\" value=\"o3partnerid\">\n                     <input style=\"background: #0A2; color: #fff; font-weight: bold;\" type=\"submit\" value=\"Register Now\">\n                     <p>\n                         If another employee in your company registers, please make sure to enter the O3-Shop partner ID o3partnerid in order to be able to fully use the integration. For that reason you can forward this link to them: https://usercentrics.com/pricing/?partnerid=o3partnerid#business-package\n                     </p>\n                 </form>\n                 "
-    lang: ''
-    thumbnail: ''
-    author: O3-Shop
-    url: ''
-    email: ''
-    classExtensions:
-      OxidEsales\Eshop\Core\ViewHelper\JavaScriptRenderer: OxidProfessionalServices\Usercentrics\Core\ScriptRenderer
-      OxidEsales\Eshop\Core\ViewConfig: OxidProfessionalServices\Usercentrics\Core\ViewConfig
-    moduleSettings:
-      usercentricsId:
-        group: usercentrics_main
-        type: str
-        value: ''
-      smartDataProtectorActive:
-        group: usercentrics_advanced
-        type: bool
-        value: true
-      smartDataProtectorDeactivateBlocking:
-        group: usercentrics_advanced
-        type: str
-        value: ''
-      usercentricsMode:
-        group: usercentrics_advanced
-        type: select
-        value: CmpV2
-        constraints:
-          - CmpV1
-          - CmpV2
-          - CmpV2Legacy
-          - CmpV2Tcf
-          - CmpV2TcfLegacy
-          - Custom
-      developmentAutomaticConsent:
-        type: bool
-        value: false
-    templateBlocks:
-      -
-        template: layout/base.tpl
-        block: base_js
-        file: src/views/blocks/base_js.tpl
-      -
-        template: layout/base.tpl
-        block: head_meta_description
-        file: src/views/blocks/head_meta_description.tpl
   oepaypal:
     id: oepaypal
     path: oe/oepaypal
@@ -500,6 +500,12 @@ modules:
       EditorSwitch.tpl: o3-shop/tinymce-editor/Application/views/admin/editorswitch.tpl
 moduleChains:
   classExtensions:
+    OxidEsales\Eshop\Core\ViewHelper\JavaScriptRenderer:
+      - OxidProfessionalServices\Usercentrics\Core\ScriptRenderer
+    OxidEsales\Eshop\Core\ViewConfig:
+      - OxidProfessionalServices\Usercentrics\Core\ViewConfig
+      - OxidEsales\PayPalModule\Core\ViewConfig
+      - O3\TinyMCE\Application\Core\ViewConfig
     OxidEsales\Eshop\Application\Component\Widget\ArticleDetails:
       - OxidEsales\GdprOptinModule\Component\Widget\ArticleDetails
       - OxidEsales\PayPalModule\Component\Widget\ArticleDetails
@@ -513,12 +519,6 @@ moduleChains:
       - OxidEsales\GdprOptinModule\Controller\ArticleDetailsController
     OxidEsales\Eshop\Application\Controller\ContactController:
       - OxidEsales\GdprOptinModule\Controller\ContactController
-    OxidEsales\Eshop\Core\ViewHelper\JavaScriptRenderer:
-      - OxidProfessionalServices\Usercentrics\Core\ScriptRenderer
-    OxidEsales\Eshop\Core\ViewConfig:
-      - OxidProfessionalServices\Usercentrics\Core\ViewConfig
-      - OxidEsales\PayPalModule\Core\ViewConfig
-      - O3\TinyMCE\Application\Core\ViewConfig
     OxidEsales\Eshop\Application\Component\BasketComponent:
       - OxidEsales\PayPalModule\Component\BasketComponent
     OxidEsales\Eshop\Application\Controller\OrderController:
