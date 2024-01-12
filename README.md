@@ -4,9 +4,11 @@ Der O3-Shop verwendet bei der Installation zur Paketzusammenstellung Composer. D
 
 ## composerfreie Shopinstallation
 
-Finde Deine gewünschte Shopversion auf der (//releases) Releasesseite. Lade Dir das Installationspaket herunter und entpacke es im Zielverzeichnis Deines Shops.
+Prüfe die [Systemanforderungen](https://docs.o3-shop.com/en/latest/User/Installation/SystemRequirements.html) an Deinen Server.
 
-Stelle den Document Root Deiner Installation auf das "source"-Verzeichnis ein und folge unserer allgemeinen Installationsanleitung.
+Finde Deine gewünschte Shopversion auf der [Releaseseite](/../../releases). Lade Dir das passende Installationspaket herunter und entpacke es im Zielverzeichnis Deines Shops.
+
+Stelle den Document Root Deiner Installation auf das "source"-Verzeichnis ein und folge unserer allgemeinen [Installationsanleitung](https://docs.o3-shop.com/en/latest/User/Installation/NewInstallation.html#adjust-file-and-directory-permissions).
 
 ## Warum solltest Du dennoch Composer zur Installation verwenden?
 
